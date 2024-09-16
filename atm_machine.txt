@@ -1,0 +1,129 @@
+
+***********************************************************************
+                                    ATM MACHINE                          
+*************************************************************************
+
+ATM System - Context-Level DFD (Level 0)
+
+<!-- Entities: -->
+User: This represents the customer using the ATM.
+Bank System (or Database): This represents the external system that stores the user's account details, including balance, transaction history, and authentication data.
+Processes in ATM System:
+Authentication: The user enters their PIN, which is validated against the stored data in the bank system.
+Balance Inquiry: The user requests their current balance, which is fetched from the bank system.
+Deposit: The user deposits money into their account, which updates their balance.
+Withdrawal: The user withdraws money, which updates their balance and transaction history.
+Transaction History: The user can view their transaction history, retrieved from the bank system.
+PIN Change: The user can change their PIN, which updates their data in the bank system.
+
+<!-- Context-Level DFD (Level 0): -->
+plaintext
+Copy code
+                      +-----------------------------------+
+                      |         BANK SYSTEM               |
+                      | (Stores account details, balance, |
+                      |  transaction history, and PINs)   |
+                      +-----------------------------------+
+                               ^          ^
+                               |          |
+                               |          |
+                               v          v
+                       +-----------------------------------+
+                       |            ATM SYSTEM            |
+                       |  1. Authenticate User            |
+                       |  2. Balance Inquiry              |
+                       |  3. Deposit Money                |
+                       |  4. Withdraw Money               |
+                       |  5. View Transaction History     |
+                       |  6. Change PIN                   |
+                       +-----------------------------------+
+                                ^         ^
+                                |         |
+                                |         |
+                                v         v
+                         +------------------------+
+                         |        USER            |
+                         | (Inputs PIN, requests  |
+                         | balance, deposits, etc.)|
+                         +------------------------+
+Details of Processes:
+Authenticate User:
+
+The user enters their PIN.
+The ATM system validates the PIN by checking against data in the bank system.
+Feedback to the user: Success or failure of the login.
+Balance Inquiry:
+
+The user requests their balance.
+The ATM system retrieves the balance from the bank system and displays it to the user.
+Deposit Money:
+
+The user enters the amount to deposit.
+The ATM system updates the balance in the bank system by adding the deposited amount.
+The transaction is recorded.
+Withdraw Money:
+
+The user enters the amount to withdraw.
+The ATM system checks if the balance is sufficient in the bank system.
+If sufficient, the balance is updated, and the withdrawal is successful.
+The transaction is recorded.
+Transaction History:
+
+The user requests to see the transaction history.
+The ATM system fetches and displays the user's recent transactions from the bank system.
+Change PIN:
+
+The user enters the current PIN and new PIN.
+The ATM system verifies the current PIN, then updates the stored PIN in the bank system to the new one.
+Level 1 DFD (More Detailed Breakdown)
+If you want more granularity, a Level 1 DFD can break down each major process. For example:
+
+1. Authenticate User Process (Level 1 DFD): plaintext Copy code
+                      +----------------------------+
+                      |        BANK SYSTEM         |
+                      | (Stores valid PINs for     |
+                      |  user authentication)      |
+                      +----------------------------+
+                               ^
+                               |
+                               |
+                               v
+                  +-----------------------------+
+                  |     ATM SYSTEM (Authentication) |
+                  | 1. User inputs PIN           |
+                  | 2. System validates PIN      |
+                  +-----------------------------+
+                               ^
+                               |
+                               |
+                               v
+                     +-----------------+
+                     |      USER       |
+                     | (Inputs PIN)    |
+                     +-----------------+
+
+2. Withdraw Money Process (Level 1 DFD): plaintext Copy code
+                      +----------------------------+
+                      |        BANK SYSTEM         |
+                      | (Stores balance &          |
+                      |  transaction history)      |
+                      +----------------------------+
+                               ^
+                               |
+                               |
+                               v
+                  +-----------------------------+
+                  |     ATM SYSTEM (Withdrawal)  |
+                  | 1. User enters amount        |
+                  | 2. System checks balance     |
+                  | 3. Updates balance if valid  |
+                  | 4. Records transaction       |
+                  +-----------------------------+
+                               ^
+                               |
+                               |
+                               v
+                        +-----------------+
+                        |      USER       |
+                        | (Requests money)|
+                        +-----------------+
