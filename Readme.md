@@ -136,4 +136,3 @@ git commit -m 'Add some feature'
 git push origin feature-branch
 
 # 6. Open a pull request
-# (Go to your repository on GitHub and open a pull request against the main branch)
